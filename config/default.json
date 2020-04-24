@@ -2,5 +2,6 @@
     "mongoURI": "mongodb+srv://spiritstalker:Ccrj85c1@mycluster-5qmrl.mongodb.net/test?retryWrites=true&w=majority",
     "jwtSecret": "mysecrettoken",
     "githubClientId": "f545414f4d6404e15c2c",
-    "githubSecret": "2499b87e7fa9cc062559aceb7fe754c4f92b736d"
+    "githubSecret": "2499b87e7fa9cc062559aceb7fe754c4f92b736d",
+    "githubToken": "c2d02db751e5beb552a51083cccfb4ac419e8717"
 }
