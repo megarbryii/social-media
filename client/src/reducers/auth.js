@@ -1,6 +1,8 @@
 import {
     REGISTER_SUCESS,
-    REGISTER_FAIL
+    REGISTER_FAIL,
+    USER_LOADED,
+    AUTH_ERROR
 } from '../actions/types';
 
 const initialState = {
@@ -29,6 +31,14 @@ export default function(state = initialState, action) {
                 token: null,
                 isAuthenticated: false,
                 loading: false
+            }
+        case USER_LOADED:
+        case AUTH_ERROR:
+            return {
+                ...state,
+                isAuthenticated: true,
+                loading: false,
+                user: payload
             }
         default:
             return state;
