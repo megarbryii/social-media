@@ -1,7 +1,9 @@
 import React, { useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+
+import DashboardActions from './DashboardActions';
 
 import { getCurrentProfile } from '../../actions/profile';
 
@@ -17,13 +19,17 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
        <p className="lead">
            <i className="fas fa-user"/> Welcome { user && user.name }
        </p>
-       { profile !== null ? <Fragment>has</Fragment> : 
-       <Fragment>
-          <p>You do not set up a profile, please add some info</p> 
-          <Link to='/create-profile' className='btn btn-primary my-1'>
-            Create profile
-          </Link>
-        </Fragment>}
+       { profile !== null ? 
+            (<Fragment>
+                <DashboardActions/>
+            </Fragment>)
+         : 
+            (<Fragment>
+                <p>You do not set up a profile, please add some info</p> 
+                <Link to='/create-profile' className='btn btn-primary my-1'>
+                    Create profile
+                </Link>
+            </Fragment>)}
     </Fragment>
 }
 
