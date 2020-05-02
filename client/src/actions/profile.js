@@ -13,12 +13,12 @@ export const getCurrentProfile = () => async dispatch => {
 
         dispatch({
             type: GET_PROFILE,
-            paylaod: res.data
+            payload: res.data
         });
     } catch (err) {
         dispatch({
             type: PROFILE_ERROR,
-            paylaod: { msg: err.response.statusText, status: err.response.status }
+            payload: { msg: err.response.statusText, status: err.response.status }
         });
     }
 }
@@ -36,7 +36,7 @@ export const createProfile = (formData, history, edit = false) => async dispatch
 
         dispatch({
             type: GET_PROFILE,
-            paylaod: res.data
+            payload: res.data
         });
 
         dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created'), 'sucess');
@@ -53,7 +53,7 @@ export const createProfile = (formData, history, edit = false) => async dispatch
 
         dispatch({
             type: PROFILE_ERROR,
-            paylaod: { msg: err.response.statusText, status: err.response.status }
+            payload: { msg: err.response.statusText, status: err.response.status }
         });
     }
 }
