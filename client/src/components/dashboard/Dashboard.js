@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import DashboardActions from './DashboardActions';
+import Experience from './Experience';
+import Education from './Education';
 
 import { getCurrentProfile } from '../../actions/profile';
 
@@ -12,7 +14,7 @@ import Spinner from '../layouts/Spinner';
 const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, loading } }) => {
     useEffect(() => {
         getCurrentProfile();
-    }, []);
+    }, [getCurrentProfile]);
 
     return loading && profile === null ? <Spinner /> : <Fragment>
        <h1 className="large text-primary">Dashboard</h1>
@@ -22,6 +24,8 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
        { profile !== null ? 
             (<Fragment>
                 <DashboardActions/>
+                <Experience experience={profile.experience} />
+                <Education education={profile.education} />
             </Fragment>)
          : 
             (<Fragment>
