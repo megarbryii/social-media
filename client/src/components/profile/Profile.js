@@ -8,23 +8,37 @@ import { getProfileById } from '../../actions/profile';
 import Spinner from '../layouts/Spinner';
 import ProfileTop from './ProfileTop';
 
-const Profile = ({ profile:  {profile, loading }, auth, match, getProfileById }) => {
+const Profile = ({
+    profile: {profile, loading},
+    auth,
+    match,
+    getProfileById,
+  }) => {
     useEffect(() => {
-        getProfileById(match.params.id);
-    }, [getProfileById, match.params.id])
-
+      getProfileById(match.params.id);
+    }, [getProfileById, match.params.id]);
+   
+    if (profile === null || loading) return <Spinner />;
+   
     return (
-        <Fragment>
-           {profile === null || loading ? <Spinner /> : <Fragment>
-               <Link to='/profiles' className='btn btn-light'>Back to Profiles</Link>
-               {auth.isAuthenticated && auth.loading === false && auth.user._id === profile.user._id && (<Link to='/edit-profile' className='btn btn-dark'>Edit Profile</Link>)}
-            </Fragment>}
-            <div className="profile-grid my-1">
-                <ProfileTop profile={profile} />
-            </div>
-        </Fragment>
-    )
-}
+      <Fragment>
+        <Link to="/profiles" className="btn btn-light">
+          Back to Profiles
+        </Link>
+        {auth.isAuthenticated &&
+          auth.loading === false &&
+          auth.user._id === profile.user._id && (
+            <Link to="/edit-profile" className="btn btn-dark">
+              Edit Profile
+            </Link>
+          )}
+        )}
+        <div className="profile-grid my-1">
+          <ProfileTop profile={profile} />
+        </div>
+      </Fragment>
+    );
+  };
 
 Profile.propTypes = {
     getProfileById: PropTypes.func.isRequired,
